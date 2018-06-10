@@ -1,38 +1,57 @@
+/* eslint-disable indent */
 <template>
-  <div class="hello">
-    <h1>Login page</h1>
-    <div>{{ login }}</div>
-    <div>
-        <div>
-            <input type="text" name="login" v-model="login">
-        </div>
-        <div>
-            <input type="password" name="pass" v-model="pass">
-        </div>
-        <div>
-            <button @click="loginAction">Login</button>
-        </div>
+  <section class="middle">
+    <div class="container">
+      <div class="row">
+        <!--<form class="auth-form s4 col offset-s4"> <!-- action="" -->
+
+          <Signups task="login" v-bind:signups="signups" v-on:change="loginAction"></Signups>
+          <br>
+          <div class="input-field">
+            <button v-on:click="loginAction" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
+          </div>
+          <div class="text-center"><a href="#!">Forgot your login data?</a></div>
+        <!--</form>-->
+        <br>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-export default {
-  name: 'Login',
-  data () {
-    return {
-      login: 'test',
-      pass: 'test'
+  import axios from 'axios'
+  import Signups from './layout/Signups'
+  import CFG from './layout/Params'
+
+  export default {
+    name: 'Login',
+
+    components: {
+      Signups
+    },
+
+    data () {
+      return {
+        signups: CFG['signups'].slice(0, 2)
+      }
+    },
+
+    methods: {
+      loginAction: function (signup_data) {
+        console.log(JSON.stringify(signup_data))
+
+        /*return axios.post('http://back.loc:81/login', JSON.stringify(this.$data.login, this.$data.password), {withCredentials: true})
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })*/
+      }
     }
-  },
-  methods: {
-    loginAction: function () {
-      console.log('Login: ' + this.login)
-      console.log('Pass: ' + this.pass)
-    }
-  },
-  beforeCreate: function () {
-    console.log('beforeCreate')
+
+    /*mounted: function () {
+      console.log(this.signup_data)
+    }*/
   }
-}
 </script>

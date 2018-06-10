@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -5,7 +7,7 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
-    addsList: [
+    adsList: [
       {
         id: '1',
         name: 'test1'
@@ -19,11 +21,11 @@ const Store = new Vuex.Store({
         name: 'test3'
       }
     ],
-    addItem: {}
+    addItem: { }
   },
   mutations: {
-    updateAddsList (state, data) {
-      state.addsList = data
+    updateAdsList (state, data) {
+      state.adsList = data
     },
     updateAddItem (state, data) {
       state.addItem = data
@@ -31,25 +33,25 @@ const Store = new Vuex.Store({
   },
   actions: {
     setList (context, params) {
-      context.commit('updateAddsList', params.data)
+      context.commit('updateAdsList', params.data)
     },
     loadById (context, params) {
-      context.state.addsList.forEach(item => {
+      context.state.adsList.forEach(item => {
         if (item.id === params.id) {
-          let editedItem = {}
+          let editedItem = { }
           Object.assign(editedItem, item)
           context.commit('updateAddItem', editedItem)
         }
       })
     },
     save (context, params) {
-      context.state.addsList.forEach(item => {
+      context.state.adsList.forEach(item => {
         if (item.id === params.item.id) {
           item.name = params.item.name
         }
       })
 
-      context.commit('updateAddsList', context.state.addsList)
+      context.commit('updateAdsList', context.state.adsList)
     }
   }
 })

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 <template>
   <div>
     <h1>Page not found</h1>
@@ -5,11 +6,11 @@
 </template>
 
 <script>
-export default {
-  name: 'Page404',
-  data () {
-    return {
+  export default {
+    name: 'Page404',
+    data () {
+      return {
+      }
     }
   }
-}
 </script>
