@@ -1,11 +1,10 @@
 /* eslint-disable indent */
 export default {
   sortOptions: [
-    { id: 0, name: 'Which ads should go first:' },
-    { id: 1, name: 'newest' },
-    { id: 2, name: 'oldest' },
-    { id: 3, name: 'cheaper' },
-    { id: 4, name: 'expensive' }
+    { id: 0, name: 'newest' },
+    { id: 1, name: 'oldest' },
+    { id: 2, name: 'cheaper' },
+    { id: 3, name: 'expensive' }
   ],
 
   products: [

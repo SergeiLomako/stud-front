@@ -28,7 +28,6 @@
         <div class="col s2">
           <div class="switch">
             <label>
-              Inactive
               <input type="checkbox">
               <span class="lever"></span>
               Active
