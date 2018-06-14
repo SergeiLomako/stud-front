@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -7,21 +6,11 @@ Vue.use(Vuex)
 
 const Store = new Vuex.Store({
   state: {
-    adsList: [
-      {
-        id: '1',
-        name: 'test1'
-      },
-      {
-        id: '2',
-        name: 'test2'
-      },
-      {
-        id: '3',
-        name: 'test3'
-      }
-    ],
-    addItem: { }
+    backAddress: 'http://back.loc:81/',
+    adsList: [ ],
+    addItem: { },
+    categories: { },
+    loginState: null
   },
   mutations: {
     updateAdsList (state, data) {
@@ -29,11 +18,18 @@ const Store = new Vuex.Store({
     },
     updateAddItem (state, data) {
       state.addItem = data
+    },
+    updateCategories (state, data) {
+      state.categories = data
+    },
+    updateLoginState (state, data) {
+      state.loginState = data
     }
   },
   actions: {
+    /* original - context.commit('updateAdsList', params.data) */
     setList (context, params) {
-      context.commit('updateAdsList', params.data)
+      context.commit('updateAdsList', params)
     },
     loadById (context, params) {
       context.state.adsList.forEach(item => {
@@ -52,6 +48,24 @@ const Store = new Vuex.Store({
       })
 
       context.commit('updateAdsList', context.state.adsList)
+    },
+    setCategories (context, params) {
+      let result = { }
+      let i = 0
+      for (let section in params) {
+        let section_list = { }
+        let j = 0
+        for (let category in params[section].children) {
+          section_list[j] = {id: params[section].children[category].id, name: params[section].children[category].name}
+          j++;
+        }
+        result[i] = {id: params[section].category.id, name: params[section].category.name, category_list: section_list}
+        i++
+      }
+      context.commit('updateCategories', result)
+    },
+    login (context, params) {
+      context.commit('updateLoginState', params)
     }
   }
 })

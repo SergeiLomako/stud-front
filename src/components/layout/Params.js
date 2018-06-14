@@ -10,41 +10,43 @@ export default {
 
   products: [
     { id: 0,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
+      title: 'Samsung S7 Edge Snapdragon',
       price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      description: 'Beautifully designed inside and out, the Samsung Galaxy S7 edge exceeds your expectations. ' +
+      'The slim dual-edge design ensures a great fit and feel whether in your hands or your pocket.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 1,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      title: 'Audi Q7 2.0 TFSI',
+      price: 100000,
+      description: 'The Q7 is the first Audi SUV to use very-high-speed FlexRay optical fiber data bus technology, ' +
+      'which interconnects all electrical/electronic systems, particularly the latest generation ' +
+      'Multi Media Interface, Adaptive Air Suspension, and the multitude of new driver assistance systems.',
       image: 'http://via.placeholder.com/150x150' },
     { id: 2,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
+      title: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
       price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
+      description: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
       ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
       image: 'http://via.placeholder.com/150x150' },
     { id: 3,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      title: 'ASUS GL503VM-GZ040T',
+      price: 2000,
+      description: 'With up to the latest 8th Gen Intel® Core™ processors and NVIDIA® GeForce® GTX 10-Series graphics, ' +
+      'ROG Strix GL503 has all the necessary tools you need for gaming mastery. So gear up, stand your ground, and ' +
+      'prepare for combat!',
       image: 'http://via.placeholder.com/150x150' },
     { id: 4,
-      name: 'Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor',
-      price: 500,
-      descr: 'Horizontal Washing Machine (belly type) with CE Approved & SGS Audited GX series' +
-      ' washing machine: GX-30-70KG sample washing machine: Ss washing machine ...',
+      title: 'Xiaomi Stratos',
+      price: 230,
+      description: 'Amazfit Stratos is a premium multisport GPS smartwatch with 5 ATM water resistance, VO2max fitness ' +
+      'level analysis, heart rate sensor, and transflective always-on color touch display.',
       image: 'http://via.placeholder.com/150x150' }
   ],
 
   categories: [
     { id: 0,
       name: 'Cars',
-      categories: [
+      subsection: [
         { id: 0, name: 'Sport' },
         { id: 1, name: 'Coupe' },
         { id: 2, name: 'Estate' }
@@ -52,7 +54,7 @@ export default {
     },
     { id: 1,
       name: 'Bags, Cases & Boxes',
-      categories: [
+      subsection: [
         { id: 0, name: 'Tin Box' },
         { id: 1, name: 'Electronic Box' },
         { id: 2, name: 'Gift Box' }
@@ -60,7 +62,7 @@ export default {
     },
     { id: 2,
       name: 'Kitchenware',
-      categories: [
+      subsection: [
         { id: 0, name: 'Food storage & organising' },
         { id: 1, name: 'Cooking accessories' },
         { id: 2, name: 'Coffee & tea makers' },
@@ -69,7 +71,7 @@ export default {
     },
     { id: 3,
       name: 'Lights & Lighting',
-      categories: [
+      subsection: [
         { id: 0, name: 'Halogen Bulb' },
         { id: 1, name: 'Led Lamp' },
         { id: 2, name: 'Outdoor Lighting' }
@@ -83,14 +85,5 @@ export default {
     { id: 2, name: '3' },
     { id: 3, name: '4' },
     { id: 4, name: '5' }
-  ],
-
-  signups: [
-    { id: 0, name: 'login', type: 'email', value: '', icon: 'account_circle', label: 'E-mail address', descr: 'enter your e-mail address' },
-    { id: 1, name: 'password', type: 'text', value: '', icon: 'vpn_key', label: 'Password', descr: 'enter your password' },
-    { id: 2, name: 'confirm_pass', type: 'text', value: '', icon: 'vpn_key', label: 'Repeat password', descr: 'confirm your password' },
-    { id: 3, name: 'first_name', type: 'text', value: '', icon: 'person', label: 'First name', descr: 'enter your first name' },
-    { id: 4, name: 'last_name', type: 'text', value: '', icon: 'person', label: 'Last name', descr: 'enter your last name' },
-    { id: 5, name: 'phone', type: 'text', value: '', icon: 'phone', label: 'Phone number', descr: 'enter your phone number' }
   ]
 }

@@ -3,18 +3,18 @@
   <section class="middle">
     <div class="container">
       <div class="breadcrumb-wrap d-flex align-items-center">
-        <div class="col s12">Ad Id: {{ $route.params.id }}</div>
+        <div class="col s12 breadcrumb">Ad Id: {{ $route.params.id }}</div>
       </div>
 
 
       <div class="product-single">
-        <form action="lala" class="product-form">
+        <form class="product-form" v-on:submit="formHandler">
           <div class="row">
 
 
             <div class="col s4">
               <div class="file-field input-field">
-                <div class="btn"><span>File</span>
+                <div class="btn"><span>Load image</span>
                   <input type="file">
                 </div>
 
@@ -22,38 +22,52 @@
                   <input type="text" class="file-path validate">
                 </div>
               </div>
+
+              <div class="align-items-left">
+                <a href="#" data-target="dropdown1" class="dropdown-trigger btn waves-effect waves-light">Categories
+                <i class="material-icons sufix">menu</i></a>
+                <div id="dropdown1" class="dropdown-content"><a class="right all-link">All</a>
+                  <Category v-for="section in categories"
+                            v-bind:key="section.id"
+                            v-bind:category_section="section">
+                  </Category>
+                </div>
+              </div>
             </div>
 
 
             <div class="col s8">
               <div class="input-field">
-                <input id="title" type="text" value="Large Industrial Ultrasonic Cleaning Washing Machine for Engine Filter Carburetor" class="validate" v-model="item.name">
-                <label for="title">Title</label><span class="error"> </span>
+                <i class="material-icons prefix">title</i>
+                <input id="title" type="text" class="validate" v-model="item.name">
+                <label for="title">Title</label>
+                <span class="helper-text" data-error="incorrect data">Enter item's title</span>
               </div>
 
               <div class="input-field">
-                <input id="price" type="text" value="500" class="validate">
-                <label for="price">Price</label><span class="error"> </span>
+                <i class="material-icons prefix">attach_money</i>
+                <input id="price" type="number" class="validate">
+                <label for="price">Price</label>
+                <span class="helper-text" data-error="incorrect data">Enter item's price</span>
               </div>
 
               <div class="input-field">
-                <textarea id="textarea2" data-length="230" class="materialize-textarea">HHO carbon clean machine is the newest achievement with HHO gas and HHO agent cleaning at the same time.its innovative design and updated spare parts can increase the machine working efficiency to reach safer operation.</textarea>
-                <label for="textarea2">Overview</label><span class="error"> </span>
+                <i class="material-icons prefix">info_outline</i>
+                <textarea id="descr" data-length="230" class="materialize-textarea validate"></textarea>
+                <label for="descr">Description</label>
+                <span class="helper-text" data-error="incorrect data">Enter item's description</span>
               </div>
 
               <div class="buttons">
-                <a href="#!" class="btn waves-effect waves-light" v-on:click="save()">
+                <a class="btn waves-effect waves-light" v-on:click="save()">
                   Save
-                  <i class="material-icons sufix">
-                    save
-                  </i>
+                  <i class="material-icons sufix">save</i>
                 </a>
+
                 <router-link :to="{name: 'AdsList'}">
-                  <a href="#!" class="btn waves-effect waves-light">
+                  <a class="btn waves-effect waves-light">
                     Cancel
-                    <i class="material-icons sufix">
-                      cancel
-                    </i>
+                    <i class="material-icons sufix">cancel</i>
                   </a>
                 </router-link>
               </div>
@@ -66,31 +80,30 @@
     </div>
 
   </section>
-
-
-
-  <!--<div class="form">
-    <h1>Editing ad page: </h1>
-    <h3>Ad Id: {{ $route.params.id }}</h3>
-    <input v-model="item.name"/>
-    <br /><br />
-    <button @click="save()">Save</button>
-     &nbsp;&nbsp;
-    <router-link :to="{name: 'AdsList'}">Cancel</router-link>
-  </div>-->
 </template>
 
 <script>
+  import Category from './layout/Category'
   import { mapState } from 'vuex'
 
   export default {
     name: 'AddForm',
+
+    components: {
+      Category
+    },
+
     computed: {
       ...mapState({
-        item: 'addItem'
+        item: 'addItem',
+        categories: 'categories'
       })
     },
+
     methods: {
+      formHandler: function (event) {
+        event.preventDefault()
+      },
       save: function () {
         this.$store.dispatch('save', {item: this.item})
           .then(() => {
@@ -98,6 +111,7 @@
           })
       }
     },
+
     created () {
       this.$store.dispatch('loadById', {id: this.$route.params.id})
     }

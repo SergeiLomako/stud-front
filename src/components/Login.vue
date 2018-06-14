@@ -3,16 +3,29 @@
   <section class="middle">
     <div class="container">
       <div class="row">
-        <!--<form class="auth-form s4 col offset-s4"> <!-- action="" -->
+        <form class="auth-form s4 col offset-s4" v-on:submit="formHandler">
 
-          <Signups task="login" v-bind:signups="signups" v-on:change="loginAction"></Signups>
-          <br>
           <div class="input-field">
-            <button v-on:click="loginAction" type="submit" class="btn btn-max waves-effect waves-light">Submit</button>
+            <i class="material-icons prefix">account_circle</i>
+            <input id="login" type="email" class="validate"
+                   required="" aria-required="true" v-model="login_data.login">
+            <label for="login">E-mail address</label>
+            <span class="helper-text" data-error="incorrect data">enter your e-mail address</span>
           </div>
-          <div class="text-center"><a href="#!">Forgot your login data?</a></div>
-        <!--</form>-->
-        <br>
+
+          <div class="input-field">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="password" type="password" class="validate"
+                   required="" aria-required="true" v-model="login_data.password">
+            <label for="password">Password</label>
+            <span class="helper-text" data-error="incorrect data">enter your password</span>
+          </div>
+
+          <div class="input-field">
+            <button type="submit" class="btn btn-max waves-effect waves-light" v-on:click="loginAction">Submit</button>
+          </div>
+
+        </form>
       </div>
     </div>
   </section>
@@ -20,38 +33,39 @@
 
 <script>
   import axios from 'axios'
-  import Signups from './layout/Signups'
-  import CFG from './layout/Params'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'Login',
 
-    components: {
-      Signups
-    },
-
     data () {
       return {
-        signups: CFG['signups'].slice(0, 2)
+        login_data: {
+          login: '',
+          password: ''
+        }
       }
+    },
+
+    computed: {
+      ...mapState({
+        back_address: 'backAddress'
+      })
     },
 
     methods: {
-      loginAction: function (signup_data) {
-        console.log(JSON.stringify(signup_data))
-
-        /*return axios.post('http://back.loc:81/login', JSON.stringify(this.$data.login, this.$data.password), {withCredentials: true})
+      formHandler: function (event) {
+        event.preventDefault()
+      },
+      // TODO Send error to Page404
+      loginAction: function () {
+        return axios.post(this.back_address + 'login', JSON.stringify(this.login_data), {withCredentials: true})
           .then(response => {
-            console.log(response.data)
+            this.$store.dispatch('login', response.data)
+            this.$router.push({name: 'AdsList'})
           })
-          .catch(function (error) {
-            console.log(error)
-          })*/
+          .catch(error => console.log(error))
       }
     }
-
-    /*mounted: function () {
-      console.log(this.signup_data)
-    }*/
   }
 </script>
